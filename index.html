@@ -12,8 +12,8 @@
   --bg:    #f9f6f2;
   --bg2:   #f2ede6;
   --bg3:   #ebe4da;
-  --ink:   #181410;
-  --ink2:  #3a2e2a;
+  --ink:   #141210;
+  --ink2:  #2a2018;
   --gold:  #b8953a;
   --gold2: rgba(184,149,58,.12);
   --brown: #6b4f3a;
@@ -93,6 +93,7 @@ body.ja .ja-only{ display:block !important; }
   min-height:200px;
   display:flex; flex-direction:column; justify-content:flex-end;
   padding:3rem 2.5rem 2.8rem;
+  margin-top:60px;
   position:relative; overflow:hidden;
 }
 .hero::before{
@@ -726,6 +727,58 @@ body.en .res-sub{display:none}
 body.en .res-small-en{display:block}
 body.en .res-small{display:none}
 
+/* ── OVER SEA COUPON BAND ── */
+.oversea-band{
+  margin-top:2.5rem;
+  background:var(--bg3);
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  border-left:3px solid var(--gold);
+  padding:2rem 2rem;
+  display:grid; grid-template-columns:1fr auto;
+  align-items:center; gap:2rem;
+}
+@media(max-width:560px){
+  .oversea-band{grid-template-columns:1fr;text-align:center}
+  .oversea-right{display:flex;justify-content:center}
+}
+.oversea-eyebrow{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.58rem; letter-spacing:.32em;
+  color:var(--gold); display:block; margin-bottom:.4rem;
+  text-transform:uppercase;
+}
+.oversea-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.5rem; font-weight:300;
+  color:var(--ink); letter-spacing:.1em; line-height:1.2;
+  margin-bottom:.4rem;
+}
+.oversea-sub{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.76rem; font-style:italic;
+  color:var(--brown); line-height:1.8; letter-spacing:.04em;
+  margin-bottom:.55rem;
+}
+.oversea-expiry{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.62rem; letter-spacing:.22em;
+  color:var(--gold);
+}
+.oversea-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  border:1px solid var(--gold);
+  color:var(--gold);
+  font-family:'Cormorant Garamond',serif;
+  font-size:.66rem; font-weight:300;
+  letter-spacing:.22em; padding:.75rem 1.6rem;
+  text-decoration:none; white-space:nowrap;
+  transition:background .2s, color .2s;
+}
+.oversea-btn:hover{
+  background:var(--gold); color:var(--white);
+}
+
 /* ── MOBILE MISC ── */
 @media(max-width:640px){
   .hero{padding:2.5rem 1.3rem 2.2rem}
@@ -749,24 +802,25 @@ body.en .res-small{display:none}
 <body class="ja">
 
 <!-- LANGUAGE SWITCH -->
-<div class="lang-switch">
+<div class="lang-switch" style="display:none">
   <button class="active" onclick="setLang('ja',this)">JP</button>
   <button onclick="setLang('en',this)">EN</button>
 </div>
 
 <!-- HERO -->
-<header class="hero">
+<div class="hero">
   <span class="hero-eyebrow">DISCOVER YOUR SANCTUARY</span>
   <h1 class="hero-title">Menu &amp; Price</h1>
   <p class="hero-sub ja-only">全メニュー・料金案内　— 税込表示</p>
   <p class="hero-sub en-only">Full Menu &amp; Pricing Guide — All prices include tax</p>
-</header>
+</div>
 
 <!-- ANCHOR NAV -->
 <nav class="anav">
   <a href="#course"><span class="ja-only">コース</span><span class="en-only">Course</span></a>
   <a href="#price"><span class="ja-only">単品料金</span><span class="en-only">Price</span></a>
-  <a href="#caution"><span class="ja-only">注意事項</span><span class="en-only">Caution</span></a>
+  <a href="#caution"><span class="ja-only">大切なお約束</span><span class="en-only">Terms of Care</span></a>
+  <a href="#international"><span class="ja-only">海外からのお客様</span><span class="en-only">International</span></a>
 </nav>
 
 <div class="wrap">
@@ -1186,17 +1240,19 @@ body.en .res-small{display:none}
   </section>
 
   <!-- NAME ORIGIN LINK -->
-  <div class="name-origin-band ja-only">
+  <div class="name-origin-band">
     <p class="name-origin-pre">Naming Story</p>
-    <p class="name-origin-text">Re:bone、Minimum "D"、Alpha、Fluve、Init——<br>これらの名前には、すべて意味があります。</p>
-    <a href="https://takahair-bridge.github.io/bridge-names/" target="_blank" class="name-origin-link">名前の由来を読む →</a>
+    <p class="name-origin-text ja-only">Re:bone、Minimum "D"、Alpha、Fluve、Init——<br>これらの名前には、すべて意味があります。</p>
+    <p class="name-origin-text en-only" style="font-family:'Cormorant Garamond',serif;font-size:.82rem;letter-spacing:.06em;line-height:2;margin-bottom:1.1rem;">Re:bone, Minimum "D", Alpha, Fluve, Init —<br>Every name was chosen for a reason.</p>
+    <a href="https://takahair-bridge.github.io/bridge-names/" target="_blank" class="name-origin-link ja-only">名前の由来を読む →</a>
+    <a href="https://takahair-bridge.github.io/bridge-names/" target="_blank" class="name-origin-link en-only">Read the stories behind the names →</a>
   </div>
 
   <!-- EARLY BOOKING -->
   <div class="early-band">
     <div class="early-title">Early Reservation</div>
-    <p class="early-text">bridgeは完全予約制のため、ご希望の日時にご案内できる枠には限りがあります。「そろそろ行きたいな」と思ったタイミングでご予約いただくことをおすすめしています。あなたのペースで、あなたのための時間を確保します。</p>
-    <p class="early-text-en">bridge is fully appointment-based, and available slots are limited. We recommend booking whenever you feel "it's about time." We'll hold your time at your own pace, for you.</p>
+    <p class="early-text">「そろそろかな」と感じた瞬間が、最良のタイミングです。<br>bridgeの席はあなたのためにある——いつでも、あなたのペースで確保します。</p>
+    <p class="early-text-en">The moment you feel "it might be time" — that is the right time.<br>Your place at bridge is always waiting. Reserve it at your own pace.</p>
   </div>
 
   <!-- ── SINGLE PRICE FOLD ── -->
@@ -1403,13 +1459,31 @@ body.en .res-small{display:none}
   </div>
 
   <!-- ── CAUTION ── -->
+<!-- OVER SEA COUPON BAND -->
+<div class="oversea-band reveal" id="international">
+  <div class="oversea-inner">
+    <div class="oversea-left">
+      <span class="oversea-eyebrow">FOR INTERNATIONAL GUESTS</span>
+      <h2 class="oversea-title">For Your Visit to Japan</h2>
+      <p class="oversea-sub">Visiting Japan? This is for you. Treatments designed around international guests — with the precision and care Japan is known for.</p>
+
+    </div>
+    <div class="oversea-right">
+      <a href="https://takahair-bridge.github.io/bridge-oversea/" class="oversea-btn" target="_blank">
+        See Special Offers
+      </a>
+    </div>
+  </div>
+</div>
+
+
   <section id="caution">
     <div class="sec-head">
       <div class="sec-line"></div>
       <div>
-        <div class="sec-en">Caution</div>
-        <div class="sec-ja ja-only">注意事項 — お互いの大切な時間を守るために</div>
-        <div class="sec-ja en-only">To protect each other's valuable time</div>
+        <div class="sec-en">Terms of Care</div>
+        <div class="sec-ja ja-only">大切な時間を、共に守るために</div>
+        <div class="sec-ja en-only">How we take care of each other</div>
       </div>
       <div class="sec-line rev"></div>
     </div>
@@ -1481,7 +1555,7 @@ body.en .res-small{display:none}
         <div class="caution-title">International</div>
         <div class="caution-body">
           海外からのご予約は、InstagramのDMにてお受けしています。<br><br>
-          アフリカ系の髪質をお持ちの方は、技術上の理由によりご対応が難しい状況です。ご了承ください。
+          アフリカン系の髪質をお持ちの方へは、現時点では十分なご対応ができないため、ご予約をお受けしておりません。ご理解をお願いいたします。
         </div>
         <div class="caution-body-en">
           International bookings are accepted via Instagram DM.<br><br>
@@ -1561,7 +1635,8 @@ function toggleFold() {
 
 function setLang(lang, btn) {
   document.body.className = lang;
-  document.querySelectorAll('.lang-switch button').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.lang-switch button, .brh-lang-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.brh-lang-btn, .lang-switch button').forEach(b => { if(b !== btn && b.textContent.trim() === btn.textContent.trim()) b.classList.add('active'); });
   btn.classList.add('active');
   // re-calc open accordion heights
   document.querySelectorAll('.acc-item.open').forEach(el => {
@@ -1608,6 +1683,11 @@ function setLang(lang, btn) {
 .brfl-ig{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%)}
 .brfl svg{width:20px;height:20px}
 @media(max-width:720px){.brh-nav{display:none}.brhbg{display:flex}}
+.brh-right{display:flex;align-items:center;gap:12px}
+.brh-lang{display:flex;border:1px solid rgba(26,25,22,.12);background:rgba(250,248,244,.6)}
+.brh-lang-btn{background:none;border:none;cursor:pointer;font-family:'Cormorant Garamond',Georgia,serif;font-size:.6rem;letter-spacing:.18em;color:rgba(26,25,22,.45);padding:.38rem .75rem;transition:background .2s,color .2s}
+.brh-lang-btn.active{background:rgba(26,25,22,.85);color:#faf8f4}
+@media(max-width:720px){.brh-lang{display:none}}
 </style>
 <script>
 (function(){
@@ -1618,7 +1698,7 @@ window._br=function(nav,ft){
   var hd=document.createElement('header');hd.className='brh';
   hd.innerHTML='<a href="https://hub.personalhairstylist.info" class="brh-logo">bridge</a>'+
     '<nav><ul class="brh-nav">'+nav.map(function(p){return'<li><a href="'+p[0]+'"'+(p[2]?' class="on"':'')+' >'+p[1]+'</a></li>';}).join('')+'</ul></nav>'+
-    '<button class="brhbg" id="brhbg"><span></span><span></span><span></span></button>';
+    '<div class="brh-right"><div class="brh-lang"><button class="brh-lang-btn active" onclick="setLang(\'ja\',this)">JP</button><button class="brh-lang-btn" onclick="setLang(\'en\',this)">EN</button></div><button class="brhbg" id="brhbg"><span></span><span></span><span></span></button></div>';
   /* MOBILE */
   var mb=document.createElement('div');mb.className='brmob';mb.id='brmob';
   mb.innerHTML=nav.map(function(p){return'<a href="'+p[0]+'">'+p[1]+'</a>';}).join('');
@@ -1630,7 +1710,7 @@ window._br=function(nav,ft){
   var nf=document.createElement('footer');nf.className='brft';
   nf.innerHTML='<div class="brft-logo">bridge</div><div class="brft-tag">Your hair. Your story. Your bridge.</div>'+
     '<ul class="brft-nav">'+ft.map(function(p){return'<li><a href="'+p[0]+'"'+(p[2]?' class="on"':'')+' >'+p[1]+'</a></li>';}).join('')+'</ul>'+
-    '<div class="brft-copy">© bridge personal hair salon — Osaka · Kitahama</div>';
+    '<div class="brft-copy">© bridge personal hair salon</div>';
   var ef=document.querySelector('footer');
   if(ef){ef.parentNode.replaceChild(nf,ef);}else{document.body.appendChild(nf);}
   /* hide old floats */
