@@ -37,19 +37,25 @@ body{
   position:fixed; top:1rem; right:clamp(64px,8vw,108px); z-index:300;
   display:flex; gap:0;
   border:1px solid var(--rule);
-  background:var(--white);
-  box-shadow:0 2px 12px rgba(24,20,16,.08);
+  background:rgba(253,250,246,.95);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  box-shadow:0 2px 14px rgba(24,20,16,.06);
 }
 .lang-switch button{
   background:none; border:none; cursor:pointer;
   font-family:'Cormorant Garamond',serif;
-  font-size:.65rem; letter-spacing:.18em;
+  font-size:.62rem; letter-spacing:.22em;
   color:var(--ink2);
-  padding:.45rem .9rem;
-  transition:background .2s, color .2s;
+  padding:.4rem .85rem;
+  transition:background .25s, color .25s;
+  position:relative;
 }
 .lang-switch button.active{
   background:var(--ink); color:var(--white);
+}
+.lang-switch button:not(.active):hover{
+  color:var(--gold);
 }
 
 /* lang visibility */
@@ -90,9 +96,9 @@ body.ja .ja-only{ display:block !important; }
 /* ── HERO ── */
 .hero{
   background:var(--ink);
-  min-height:200px;
+  min-height:260px;
   display:flex; flex-direction:column; justify-content:flex-end;
-  padding:3rem 2.5rem 2.8rem;
+  padding:3.5rem 2.5rem 3.2rem;
   margin-top:60px;
   position:relative; overflow:hidden;
 }
@@ -100,21 +106,31 @@ body.ja .ja-only{ display:block !important; }
   content:'';position:absolute;inset:0;
   background:repeating-linear-gradient(-55deg,transparent,transparent 60px,rgba(184,149,58,.04) 60px,rgba(184,149,58,.04) 61px);
 }
+.hero::after{
+  content:'';
+  position:absolute;
+  left:2.5rem; bottom:3.2rem;
+  width:36px; height:1px;
+  background:var(--gold);
+  opacity:.7;
+  transform:translateY(-1.6rem);
+}
 .hero-eyebrow{
   font-family:'Cormorant Garamond',serif;
-  font-size:.62rem; letter-spacing:.38em;
-  color:rgba(184,149,58,.65); margin-bottom:.6rem; position:relative;
+  font-size:.62rem; letter-spacing:.42em;
+  color:rgba(184,149,58,.7); margin-bottom:.8rem; position:relative;
+  padding-left:50px;
 }
 .hero-title{
   font-family:'Cormorant Garamond',serif;
-  font-size:2.6rem; font-weight:300;
-  color:var(--white); letter-spacing:.14em;
+  font-size:2.8rem; font-weight:300;
+  color:var(--white); letter-spacing:.18em;
   line-height:1; position:relative;
 }
 .hero-sub{
   font-family:'Noto Serif JP',serif;
-  font-size:.68rem; color:rgba(253,250,246,.42);
-  letter-spacing:.18em; margin-top:.5rem; position:relative;
+  font-size:.68rem; color:rgba(253,250,246,.5);
+  letter-spacing:.2em; margin-top:.7rem; position:relative;
 }
 
 /* ── ANCHOR NAV ── */
@@ -175,6 +191,265 @@ body.ja .ja-only{ display:block !important; }
   letter-spacing:.15em; margin-top:.2rem; text-align:center;
 }
 
+/* ── HERO DECLARATION ── */
+.hero-declaration{
+  text-align:center;
+  padding:2.8rem 1.5rem 2.4rem;
+  margin:0 auto;
+  background:var(--bg2);
+  border-bottom:1px solid var(--rule);
+  position:relative;
+}
+.hero-declaration::before,
+.hero-declaration::after{
+  content:'';
+  position:absolute;
+  left:50%; transform:translateX(-50%);
+  width:18px; height:1px;
+  background:var(--gold);
+  opacity:.55;
+}
+.hero-declaration::before{ top:0; }
+.hero-declaration::after{ bottom:0; }
+.hero-declaration-inner{
+  max-width:680px;
+  margin:0 auto;
+}
+.hero-declaration-strong-ja{
+  font-family:'Zen Old Mincho',serif;
+  font-size:1.25rem;
+  font-weight:500;
+  letter-spacing:.18em;
+  color:var(--ink);
+  line-height:1.9;
+  margin-bottom:.5rem;
+}
+.hero-declaration-strong-en{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:.95rem;
+  letter-spacing:.1em;
+  color:var(--brown);
+  line-height:1.7;
+  margin-bottom:1.4rem;
+}
+body.en .hero-declaration-strong-en{
+  font-size:1.4rem;
+  font-style:normal;
+  color:var(--ink);
+  font-weight:500;
+  margin-bottom:1.4rem;
+}
+.hero-declaration-divider{
+  width:1px; height:18px;
+  background:var(--gold);
+  opacity:.5;
+  margin:0 auto 1.4rem;
+}
+.hero-declaration-soft-ja{
+  font-family:'Noto Serif JP',serif;
+  font-size:.92rem;
+  font-weight:300;
+  letter-spacing:.14em;
+  color:var(--ink2);
+  line-height:1.9;
+  margin-bottom:.4rem;
+}
+.hero-declaration-soft-en{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:.78rem;
+  letter-spacing:.08em;
+  color:var(--brown);
+  line-height:1.7;
+}
+body.en .hero-declaration-soft-en{
+  font-size:1rem;
+  font-style:normal;
+  color:var(--ink2);
+  line-height:1.8;
+}
+
+/* ── COURSE BADGES ── */
+.course-badges{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:0;
+  padding:1.3rem 0 1.5rem;
+  margin:0 0 1.4rem;
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+}
+.course-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  padding:.35rem 1.3rem;
+  font-family:'Noto Serif JP',serif;
+  font-size:.72rem;
+  font-weight:300;
+  letter-spacing:.12em;
+  color:var(--ink2);
+  position:relative;
+}
+.course-badge:not(:last-child)::after{
+  content:'';
+  position:absolute;
+  right:0; top:50%;
+  transform:translateY(-50%);
+  width:1px; height:14px;
+  background:var(--rule);
+}
+.course-badge-mark{
+  color:var(--gold);
+  font-size:.7rem;
+  letter-spacing:0;
+}
+body.en .course-badge{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.78rem;
+  letter-spacing:.14em;
+}
+
+/* ── TAKA'S VOICE ── */
+.taka-voice{
+  margin:3.2rem 0 0;
+  padding:2.8rem 1rem 2.2rem;
+  text-align:center;
+  border-top:1px solid var(--rule);
+  position:relative;
+}
+.taka-voice::before{
+  content:'';
+  position:absolute;
+  top:-1px; left:50%;
+  transform:translateX(-50%);
+  width:32px; height:1px;
+  background:var(--gold);
+}
+.taka-voice-quote{
+  font-family:'Zen Old Mincho',serif;
+  font-size:1.05rem;
+  font-weight:400;
+  color:var(--ink);
+  line-height:2.2;
+  letter-spacing:.14em;
+  margin-bottom:.8rem;
+}
+.taka-voice-quote-en{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:.92rem;
+  color:var(--brown);
+  line-height:2;
+  letter-spacing:.06em;
+  margin-bottom:1rem;
+}
+body.en .taka-voice-quote-en{
+  font-size:1.15rem;
+  font-style:normal;
+  color:var(--ink);
+  line-height:2.1;
+}
+.taka-voice-sign{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.72rem;
+  letter-spacing:.32em;
+  color:var(--gold);
+  text-transform:uppercase;
+}
+
+/* ── INDIVIDUAL SERVICES INTRO ── */
+.individual-intro{
+  padding:2rem 0 1.8rem;
+  margin-bottom:.5rem;
+  text-align:center;
+  border-bottom:1px solid var(--rule);
+}
+.individual-intro-eyebrow{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.62rem;
+  letter-spacing:.32em;
+  color:var(--gold);
+  text-transform:uppercase;
+  display:block;
+  margin-bottom:.5rem;
+}
+.individual-intro-title{
+  font-family:'Zen Old Mincho',serif;
+  font-size:.85rem;
+  letter-spacing:.18em;
+  color:var(--ink);
+  display:block;
+  margin-bottom:1.2rem;
+}
+.individual-intro-text{
+  font-family:'Noto Serif JP',serif;
+  font-size:.78rem;
+  color:var(--ink2);
+  line-height:2.1;
+  letter-spacing:.06em;
+  max-width:560px;
+  margin:0 auto 1rem;
+}
+.individual-intro-text-en{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.82rem;
+  color:var(--ink2);
+  line-height:1.9;
+  letter-spacing:.04em;
+  max-width:560px;
+  margin:0 auto 1rem;
+  display:none;
+}
+body.en .individual-intro-text-en{display:block}
+body.en .individual-intro-text{display:none}
+.individual-intro-note{
+  font-family:'Noto Serif JP',serif;
+  font-size:.68rem;
+  color:var(--brown);
+  letter-spacing:.06em;
+  margin-top:.4rem;
+}
+.individual-intro-note-en{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.72rem;
+  font-style:italic;
+  color:var(--brown);
+  letter-spacing:.04em;
+  margin-top:.4rem;
+  display:none;
+}
+body.en .individual-intro-note-en{display:block}
+body.en .individual-intro-note{display:none}
+
+/* ── FOR OUR GUESTS IN JAPAN LABEL ── */
+.guests-jp-label{
+  text-align:center;
+  margin:2.8rem auto 0;
+  padding:1.2rem 0 .4rem;
+  max-width:920px;
+  position:relative;
+}
+.guests-jp-label::before{
+  content:'';
+  position:absolute;
+  top:0; left:50%;
+  transform:translateX(-50%);
+  width:60px; height:1px;
+  background:var(--gold);
+  opacity:.4;
+}
+.guests-jp-label-text{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.6rem;
+  letter-spacing:.32em;
+  color:var(--gold);
+  text-transform:uppercase;
+}
+
 /* ── ACCORDION ── */
 .acc-item{
   border:1px solid var(--rule);
@@ -195,29 +470,55 @@ body.ja .ja-only{ display:block !important; }
   text-align:left;
 }
 .acc-trigger:focus{outline:none}
-.acc-cat{
-  font-family:'Cormorant Garamond',serif;
-  font-size:.6rem; letter-spacing:.28em;
-  color:var(--gold); margin-bottom:.3rem;
-  text-transform:uppercase; display:block;
-}
 .acc-name{
   font-family:'Cormorant Garamond',serif;
-  font-size:1.15rem; font-weight:300;
-  color:var(--ink); letter-spacing:.1em;
+  font-size:1.35rem; font-weight:300;
+  color:var(--ink); letter-spacing:.12em;
   display:block; line-height:1.3;
+  margin-bottom:.5rem;
+}
+.acc-compose{
+  font-family:'Noto Serif JP',serif;
+  font-size:.72rem;
+  font-weight:300;
+  letter-spacing:.06em;
+  color:var(--ink2);
+  display:block;
+  line-height:1.7;
+  margin-bottom:.7rem;
+}
+.acc-compose-cat{
+  color:var(--gold);
+  font-family:'Cormorant Garamond',serif;
+  font-size:.62rem;
+  letter-spacing:.24em;
+  text-transform:uppercase;
+  margin-right:.5rem;
+}
+.acc-compose em{
+  font-style:italic;
+  color:var(--gold);
+  font-family:'Cormorant Garamond',serif;
+  font-weight:400;
+  font-size:.88rem;
+  letter-spacing:.04em;
+  padding:0 .1em;
 }
 .acc-tagline{
-  font-family:'Noto Serif JP',serif;
-  font-size:.7rem; color:var(--brown);
-  letter-spacing:.05em; margin-top:.3rem;
+  font-family:'Zen Old Mincho',serif;
+  font-size:.8rem; color:var(--brown);
+  letter-spacing:.06em; margin-top:.6rem;
   display:block; line-height:1.8;
+  padding-top:.6rem;
+  border-top:1px solid var(--rule);
 }
 .acc-tagline-en{
   font-family:'Cormorant Garamond',serif;
-  font-size:.68rem; color:var(--brown);
-  letter-spacing:.08em; margin-top:.2rem;
-  display:none; line-height:1.6; font-style:italic;
+  font-size:.74rem; color:var(--brown);
+  letter-spacing:.08em; margin-top:.6rem;
+  display:none; line-height:1.7; font-style:italic;
+  padding-top:.6rem;
+  border-top:1px solid var(--rule);
 }
 body.en .acc-tagline-en{display:block}
 body.en .acc-tagline{display:none}
@@ -405,7 +706,11 @@ body.en .acc-footer-note{display:none}
 .early-band{
   background:var(--bg2);
   border-left:2px solid var(--gold);
-  padding:1.6rem 2rem; margin-top:2.5rem;
+  padding:1.8rem 2rem;
+  margin:1.5rem 1.4rem 0;
+  max-width:920px;
+  margin-left:auto;
+  margin-right:auto;
 }
 .early-title{
   font-family:'Cormorant Garamond',serif;
@@ -781,12 +1086,14 @@ body.en .res-small{display:none}
 
 /* ── MOBILE MISC ── */
 @media(max-width:640px){
-  .hero{padding:2.5rem 1.3rem 2.2rem}
-  .hero-title{font-size:2.1rem}
+  .hero{padding:2.8rem 1.3rem 2.5rem;min-height:220px}
+  .hero-title{font-size:2.1rem;letter-spacing:.14em}
+  .hero-eyebrow{padding-left:40px;font-size:.58rem;letter-spacing:.36em}
+  .hero::after{left:1.3rem;bottom:2.5rem;width:28px}
   .anav a{font-size:.6rem;padding:.65rem .85rem}
   .wrap{padding:0 1.1rem 8rem}
   .acc-trigger{padding:1.2rem 1.1rem}
-  .acc-name{font-size:1.02rem}
+  .acc-name{font-size:1.18rem;letter-spacing:.1em}
   .acc-price{font-size:1.25rem}
   .acc-body-inner{padding:0 1.1rem 1.5rem}
   .fold-body-inner{padding:1.5rem 1.1rem}
@@ -796,13 +1103,29 @@ body.en .res-small{display:none}
   table.pt td{font-size:.72rem;padding:.65rem .3rem}
   table.pt td.td-t{width:65px;font-size:.62rem}
   table.pt td.td-p{font-size:.85rem}
+  .hero-declaration{padding:2.2rem 1.1rem 1.9rem}
+  .hero-declaration-strong-ja{font-size:1.05rem;letter-spacing:.12em}
+  .hero-declaration-strong-en{font-size:.82rem}
+  .hero-declaration-soft-ja{font-size:.82rem;letter-spacing:.1em}
+  .hero-declaration-soft-en{font-size:.72rem}
+  .course-badges{flex-direction:column;gap:.5rem;padding:1.1rem 0 1.3rem}
+  .course-badge{padding:.2rem .6rem}
+  .course-badge:not(:last-child)::after{display:none}
+  .acc-compose{font-size:.68rem;letter-spacing:.04em;line-height:1.8}
+  .acc-compose-cat{display:block;margin-bottom:.2rem;margin-right:0}
+  .acc-tagline,.acc-tagline-en{font-size:.74rem}
+  .taka-voice{padding:2.2rem 1rem 1.8rem;margin-top:2.5rem}
+  .taka-voice-quote{font-size:.95rem;letter-spacing:.1em}
+  .taka-voice-quote-en{font-size:.85rem}
+  .individual-intro{padding:1.6rem 0 1.4rem}
+  .individual-intro-text,.individual-intro-text-en{font-size:.74rem}
 }
 </style>
 </head>
 <body class="ja">
 
 <!-- LANGUAGE SWITCH -->
-<div class="lang-switch" style="display:none">
+<div class="lang-switch">
   <button class="active" onclick="setLang('ja',this)">JP</button>
   <button onclick="setLang('en',this)">EN</button>
 </div>
@@ -813,6 +1136,17 @@ body.en .res-small{display:none}
   <h1 class="hero-title">Menu &amp; Price</h1>
   <p class="hero-sub ja-only">全メニュー・料金案内　— 税込表示</p>
   <p class="hero-sub en-only">Full Menu &amp; Pricing Guide — All prices include tax</p>
+</div>
+
+<!-- HERO DECLARATION -->
+<div class="hero-declaration">
+  <div class="hero-declaration-inner">
+    <p class="hero-declaration-strong-ja ja-only">大切な髪を、もう誤魔化さないで下さい。</p>
+    <p class="hero-declaration-strong-en">Don't compromise your hair any longer.</p>
+    <div class="hero-declaration-divider"></div>
+    <p class="hero-declaration-soft-ja ja-only">ここからの髪が、これからを変える。</p>
+    <p class="hero-declaration-soft-en">The hair you leave with shapes the days ahead.</p>
+  </div>
 </div>
 
 <!-- ANCHOR NAV -->
@@ -885,12 +1219,32 @@ body.en .res-small{display:none}
 
     <!-- MACRO: guarantee text reused -->
 
+    <!-- COURSE COMMON BADGES -->
+    <div class="course-badges">
+      <span class="course-badge">
+        <span class="course-badge-mark">✦</span>
+        <span class="ja-only">完全技術保証</span>
+        <span class="en-only">Full Technical Guarantee</span>
+      </span>
+      <span class="course-badge">
+        <span class="course-badge-mark">✦</span>
+        <span class="ja-only">1日5名限定</span>
+        <span class="en-only">5 Guests / Day</span>
+      </span>
+      <span class="course-badge">
+        <span class="course-badge-mark">✦</span>
+        <span class="ja-only">長さ問わず一律</span>
+        <span class="en-only">Flat-rate Pricing</span>
+      </span>
+    </div>
+
     <!-- 1: Re:bone -->
     <div class="acc-item" id="acc1">
       <button class="acc-trigger" onclick="toggleAcc('acc1')">
         <div class="acc-left">
-          <span class="acc-cat">カットコース · Cut Course</span>
           <span class="acc-name">Re:bone cut course</span>
+          <span class="acc-compose ja-only"><span class="acc-compose-cat">カットコース</span>骨格カット ＋ トリートメント ＋ <em>α</em></span>
+          <span class="acc-compose en-only"><span class="acc-compose-cat">Cut Course</span>Cut ＋ Treatment ＋ <em>α</em></span>
           <span class="acc-tagline">印象が変われば、一瞬で未来が変わる</span>
           <span class="acc-tagline-en">When your impression changes, your future changes in an instant</span>
         </div>
@@ -906,10 +1260,10 @@ body.en .res-small{display:none}
           <p class="acc-for-en">For those who sense something is missing with their current style — who've left the salon thinking "this just isn't right."</p>
           <p class="acc-desc">自分らしさを大切にしながら、骨格を意識したカットに、ほんの少しのトレンド感をプラスすることで「素敵だね」と思われる印象へ。過去のダメージを除去し、カットと同時にトリートメントを行うことで髪質を改善、生まれ変わるような手触りを楽しんでいただけます。<br><br>さらに、頭皮と髪をクレンジングすることで酸化＝老化を防ぎ、栄養を深層に届けることで健康的な肌ツヤと手触りが持続します。そして何より、ふと鏡を見たときに「今の自分、いい感じ」と思える瞬間を、ぜひ楽しんでください。</p>
           <p class="acc-desc-en">Honoring your individuality while adding just a touch of trend to a structure-conscious cut — for an impression that makes people think "you look wonderful." We remove past damage, improve texture through treatment alongside the cut, and bring back that truly transformed feel.<br><br>Deep scalp and hair cleansing prevents oxidation and aging, delivering nutrition where it matters most. Most of all, we want that moment when you glance in the mirror and think: "I look great today."</p>
-          <span class="acc-includes-label">Contents · 内容</span>
+          <span class="acc-includes-label">Includes · 含まれるもの</span>
           <div class="acc-includes">
             <div class="acc-inc-item">独自カルテ・カウンセリング</div>
-            <div class="acc-inc-item">ご相談 / カット / シャンプー</div>
+            <div class="acc-inc-item">ご相談 / 骨格デザインカット / シャンプー</div>
             <div class="acc-inc-item">ディープデトックスクレンジング</div>
             <div class="acc-inc-item">パーソナルモイストトリートメント</div>
             <div class="acc-inc-item">キューティクルロックケア</div>
@@ -934,63 +1288,13 @@ body.en .res-small{display:none}
       </div>
     </div>
 
-    <!-- 2: Minimum D -->
-    <div class="acc-item" id="acc2">
-      <button class="acc-trigger" onclick="toggleAcc('acc2')">
-        <div class="acc-left">
-          <span class="acc-cat">カラーコース · Color Course</span>
-          <span class="acc-name">Minimum D course</span>
-          <span class="acc-tagline">似合う色に出会えた瞬間、肌がパッと明るく見える</span>
-          <span class="acc-tagline-en">The moment you find your color, your skin glows brighter</span>
-        </div>
-        <div class="acc-right">
-          <span class="acc-price">34,000</span>
-          <span class="acc-time">180 min</span>
-          <span class="acc-arrow"><svg viewBox="0 0 10 6" fill="none" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></span>
-        </div>
-      </button>
-      <div class="acc-body">
-        <div class="acc-body-inner">
-          <p class="acc-for">カラーのダメージが気になりつつも、きれいな色はあきらめたくない方へ。<br>自分に似合う色に、まだ出会えていない方へ。</p>
-          <p class="acc-for-en">For those who want beautiful color but worry about damage — or who haven't yet found the shade that's truly theirs.</p>
-          <p class="acc-desc">似合う色に出会えた瞬間、肌がパッと明るく見えたり、目の輝きが増したりするもの。ダメージを最小限に抑えながら理想の色を実現するために、ハラル認定の低刺激カラーとトリートメントを組み合わせて、あなたに似合う色を一緒に見つけていきます。<br><br>色が変わると、印象が変わる。印象が変わると、気持ちまで変わります。</p>
-          <p class="acc-desc-en">The moment you find your color, your complexion brightens and your eyes come alive. We use a halal-certified, low-irritation color paired with treatment to achieve your ideal shade while minimizing damage.<br><br>When the color changes, the impression changes. When the impression changes, so does the feeling.</p>
-          <span class="acc-includes-label">Contents · 内容</span>
-          <div class="acc-includes">
-            <div class="acc-inc-item">独自カルテ・カウンセリング</div>
-            <div class="acc-inc-item">ご相談 / カット / シャンプー</div>
-            <div class="acc-inc-item">ハラル認定低刺激カラー</div>
-            <div class="acc-inc-item">ダメージホール補修処理剤</div>
-            <div class="acc-inc-item">質感調整剤配合</div>
-            <div class="acc-inc-item">パーソナルモイストトリートメント</div>
-            <div class="acc-inc-item">キューティクルロックケア</div>
-            <div class="acc-inc-item">ブロードライ / スタイリング</div>
-            <div class="acc-inc-item">ヘア・ケアアドバイス全般</div>
-            <div class="acc-inc-item">アフターケア公式LINE相談</div>
-          </div>
-          <div class="acc-guarantee">
-            <span class="acc-guarantee-icon">✦</span>
-            <p class="acc-guarantee-text"><strong>完全技術保証</strong> — 施術内容にご納得いただけない場合は無料で診断と再施術を行います。施術後1週間以内であればご遠慮なくご相談ください。</p>
-            <p class="acc-guarantee-text-en"><strong>Full Technical Guarantee</strong> — If you are not satisfied with the result, we will provide a free follow-up treatment. Please contact us within one week of your appointment.</p>
-          </div>
-          <div class="acc-footer">
-            <span class="acc-footer-time">180 min</span>
-            <div>
-              <div class="acc-footer-price">¥ 34,000</div>
-              <div class="acc-footer-note">税込 / 長さ問わず一律</div>
-              <div class="acc-footer-note-en">Tax included · Flat rate regardless of length</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 3: Special Treatment -->
+    <!-- 2: Special Treatment -->
     <div class="acc-item" id="acc3">
       <button class="acc-trigger" onclick="toggleAcc('acc3')">
         <div class="acc-left">
-          <span class="acc-cat">トリートメントコース · Treatment Course</span>
           <span class="acc-name">Special Treatment course</span>
+          <span class="acc-compose ja-only"><span class="acc-compose-cat">トリートメントコース</span>骨格カット ＋ クレンジング ＋ トリートメント ＋ <em>α</em></span>
+          <span class="acc-compose en-only"><span class="acc-compose-cat">Treatment Course</span>Cut ＋ Cleansing ＋ Treatment ＋ <em>α</em></span>
           <span class="acc-tagline">髪にご褒美、触れるたびにときめく美髪へ</span>
           <span class="acc-tagline-en">A reward for your hair — beautiful enough to keep touching</span>
         </div>
@@ -1006,10 +1310,10 @@ body.en .res-small{display:none}
           <p class="acc-for-en">For those whose hair has lost its luster and wants that silky, touchable feel back — or whose mood dips a little when the hair just isn't right.</p>
           <p class="acc-desc">過去の不要な成分を取り除き、外部・深層内部にまで栄養を届けます。乾燥やダメージで髪がパサつくと、どこか気持ちまで沈みがち。でも、髪の芯から補修するトリートメントで、ツヤとハリが蘇ると、思わず鏡の前で触れたくなるほどの手触りに。<br><br>美しく整った髪は、日々の気分をも前向きに変えてくれます。</p>
           <p class="acc-desc-en">We remove unnecessary buildup and deliver deep nutrition from the surface to the core. When your hair loses its shine, it can bring your mood down too. Our core-repair treatment restores luster and bounce — leaving hair so touchable you won't be able to stop.<br><br>Beautiful hair changes how you feel every day.</p>
-          <span class="acc-includes-label">Contents · 内容</span>
+          <span class="acc-includes-label">Includes · 含まれるもの</span>
           <div class="acc-includes">
             <div class="acc-inc-item">独自カルテ・カウンセリング</div>
-            <div class="acc-inc-item">ご相談 / カット / シャンプー</div>
+            <div class="acc-inc-item">ご相談 / 骨格デザインカット / シャンプー</div>
             <div class="acc-inc-item">ディープデトックスクレンジング</div>
             <div class="acc-inc-item">高品質酸熱トリートメント（Init）</div>
             <div class="acc-inc-item">ダメージホール補修処理剤</div>
@@ -1036,12 +1340,65 @@ body.en .res-small{display:none}
       </div>
     </div>
 
+    <!-- 3: Minimum D -->
+    <div class="acc-item" id="acc2">
+      <button class="acc-trigger" onclick="toggleAcc('acc2')">
+        <div class="acc-left">
+          <span class="acc-name">Minimum D course</span>
+          <span class="acc-compose ja-only"><span class="acc-compose-cat">カラーコース</span>骨格カット ＋ カラー ＋ トリートメント ＋ <em>α</em></span>
+          <span class="acc-compose en-only"><span class="acc-compose-cat">Color Course</span>Cut ＋ Color ＋ Treatment ＋ <em>α</em></span>
+          <span class="acc-tagline">似合う色に出会えた瞬間、肌がパッと明るく見える</span>
+          <span class="acc-tagline-en">The moment you find your color, your skin glows brighter</span>
+        </div>
+        <div class="acc-right">
+          <span class="acc-price">34,000</span>
+          <span class="acc-time">180 min</span>
+          <span class="acc-arrow"><svg viewBox="0 0 10 6" fill="none" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></span>
+        </div>
+      </button>
+      <div class="acc-body">
+        <div class="acc-body-inner">
+          <p class="acc-for">カラーのダメージが気になりつつも、きれいな色はあきらめたくない方へ。<br>自分に似合う色に、まだ出会えていない方へ。</p>
+          <p class="acc-for-en">For those who want beautiful color but worry about damage — or who haven't yet found the shade that's truly theirs.</p>
+          <p class="acc-desc">似合う色に出会えた瞬間、肌がパッと明るく見えたり、目の輝きが増したりするもの。ダメージを最小限に抑えながら理想の色を実現するために、ハラル認定の低刺激カラーとトリートメントを組み合わせて、あなたに似合う色を一緒に見つけていきます。<br><br>色が変わると、印象が変わる。印象が変わると、気持ちまで変わります。</p>
+          <p class="acc-desc-en">The moment you find your color, your complexion brightens and your eyes come alive. We use a halal-certified, low-irritation color paired with treatment to achieve your ideal shade while minimizing damage.<br><br>When the color changes, the impression changes. When the impression changes, so does the feeling.</p>
+          <span class="acc-includes-label">Includes · 含まれるもの</span>
+          <div class="acc-includes">
+            <div class="acc-inc-item">独自カルテ・カウンセリング</div>
+            <div class="acc-inc-item">ご相談 / 骨格デザインカット / シャンプー</div>
+            <div class="acc-inc-item">ハラル認定低刺激カラー</div>
+            <div class="acc-inc-item">ダメージホール補修処理剤</div>
+            <div class="acc-inc-item">質感調整剤配合</div>
+            <div class="acc-inc-item">パーソナルモイストトリートメント</div>
+            <div class="acc-inc-item">キューティクルロックケア</div>
+            <div class="acc-inc-item">ブロードライ / スタイリング</div>
+            <div class="acc-inc-item">ヘア・ケアアドバイス全般</div>
+            <div class="acc-inc-item">アフターケア公式LINE相談</div>
+          </div>
+          <div class="acc-guarantee">
+            <span class="acc-guarantee-icon">✦</span>
+            <p class="acc-guarantee-text"><strong>完全技術保証</strong> — 施術内容にご納得いただけない場合は無料で診断と再施術を行います。施術後1週間以内であればご遠慮なくご相談ください。</p>
+            <p class="acc-guarantee-text-en"><strong>Full Technical Guarantee</strong> — If you are not satisfied with the result, we will provide a free follow-up treatment. Please contact us within one week of your appointment.</p>
+          </div>
+          <div class="acc-footer">
+            <span class="acc-footer-time">180 min</span>
+            <div>
+              <div class="acc-footer-price">¥ 34,000</div>
+              <div class="acc-footer-note">税込 / 長さ問わず一律</div>
+              <div class="acc-footer-note-en">Tax included · Flat rate regardless of length</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- 4: Double Color -->
     <div class="acc-item" id="acc4">
       <button class="acc-trigger" onclick="toggleAcc('acc4')">
         <div class="acc-left">
-          <span class="acc-cat">ダブルカラーコース · Double Color Course</span>
           <span class="acc-name">Double color course</span>
+          <span class="acc-compose ja-only"><span class="acc-compose-cat">ダブルカラーコース</span>骨格カット ＋ カラー ＋ カラー ＋ トリートメント ＋ <em>α</em></span>
+          <span class="acc-compose en-only"><span class="acc-compose-cat">Double Color Course</span>Cut ＋ Color ＋ Color ＋ Treatment ＋ <em>α</em></span>
           <span class="acc-tagline">髪もあなたも、もっと自由に</span>
           <span class="acc-tagline-en">More freedom — for your hair and for you</span>
         </div>
@@ -1057,10 +1414,10 @@ body.en .res-small{display:none}
           <p class="acc-for-en">For those who've always wanted highlights or a transparent color, but held back because of damage concerns. For those searching for a color that's entirely their own.</p>
           <p class="acc-desc">NYで磨いたハイライト・バレイヤージュの技術で、唯一無二の透明感のある色を実現します。ケアブリーチとトリートメントで最大限のケアを行いながら、理想の色へ。ダメージが心配な方でも、安心してご相談ください。<br><br>髪もあなたも、もっと自由に。</p>
           <p class="acc-desc-en">Using highlight and balayage techniques refined in New York, we create a one-of-a-kind, luminous color that's yours alone. Care bleach and treatment keep your hair protected throughout the process — so even if you're worried about damage, you can trust we'll get you there gently.<br><br>More freedom — for your hair and for you.</p>
-          <span class="acc-includes-label">Contents · 内容</span>
+          <span class="acc-includes-label">Includes · 含まれるもの</span>
           <div class="acc-includes">
             <div class="acc-inc-item">独自カルテ・カウンセリング</div>
-            <div class="acc-inc-item">ご相談 / カット / シャンプー</div>
+            <div class="acc-inc-item">ご相談 / 骨格デザインカット / シャンプー</div>
             <div class="acc-inc-item">全体アルミカラー（ケアブリーチ）</div>
             <div class="acc-inc-item">ハラル認定低刺激カラー</div>
             <div class="acc-inc-item">ダメージホール補修処理剤</div>
@@ -1091,8 +1448,9 @@ body.en .res-small{display:none}
     <div class="acc-item" id="acc5">
       <button class="acc-trigger" onclick="toggleAcc('acc5')">
         <div class="acc-left">
-          <span class="acc-cat">パーマコース · Perm Course</span>
           <span class="acc-name">Alpha perm course</span>
+          <span class="acc-compose ja-only"><span class="acc-compose-cat">パーマコース</span>骨格カット ＋ パーマ ＋ トリートメント ＋ <em>α</em></span>
+          <span class="acc-compose en-only"><span class="acc-compose-cat">Perm Course</span>Cut ＋ Perm ＋ Treatment ＋ <em>α</em></span>
           <span class="acc-tagline">より素敵な自分へ、上質な柔らかさと動きをまとって</span>
           <span class="acc-tagline-en">Become a better you — wrapped in softness and movement</span>
         </div>
@@ -1108,10 +1466,10 @@ body.en .res-small{display:none}
           <p class="acc-for-en">For those who spend too long styling every morning, and want effortless movement and shape without the effort.</p>
           <p class="acc-desc">スタイリングのサポートをメインとしたカールやシルエットの変化、ボリュームコントロールとケアで特有のパサつきを防ぎ、長持ちさせます。<br><br>朝、軽く手ぐしを通すだけで決まる、こなれ感のあるフォルム。動きのある髪が生み出す、柔らかく洗練された印象。「朝が楽になったり、毎日がこんなにも変わるんだ。」そんな感覚を、ぜひ体験してみてください。</p>
           <p class="acc-desc-en">We shape curls and silhouette, control volume, and prevent the dryness typical of perms — keeping the look beautiful for longer.<br><br>A style that sets in seconds with just a light finger-comb. Soft, refined movement. "I didn't know mornings could be this easy, or that my days could change this much." That's what we want you to feel.</p>
-          <span class="acc-includes-label">Contents · 内容</span>
+          <span class="acc-includes-label">Includes · 含まれるもの</span>
           <div class="acc-includes">
             <div class="acc-inc-item">独自カルテ・カウンセリング</div>
-            <div class="acc-inc-item">ご相談 / カット / シャンプー</div>
+            <div class="acc-inc-item">ご相談 / 骨格デザインカット / シャンプー</div>
             <div class="acc-inc-item">ノーマル or デジタル施術</div>
             <div class="acc-inc-item">ダメージホール補修処理剤</div>
             <div class="acc-inc-item">質感調整剤配合</div>
@@ -1142,8 +1500,9 @@ body.en .res-small{display:none}
     <div class="acc-item" id="acc6">
       <button class="acc-trigger" onclick="toggleAcc('acc6')">
         <div class="acc-left">
-          <span class="acc-cat">ストレートコース · Straightening Course</span>
           <span class="acc-name">Straightening course</span>
+          <span class="acc-compose ja-only"><span class="acc-compose-cat">ストレートコース</span>骨格カット ＋ ストレート(縮毛矯正含む) ＋ トリートメント ＋ <em>α</em></span>
+          <span class="acc-compose en-only"><span class="acc-compose-cat">Straightening Course</span>Cut ＋ Straightening (incl. Japanese straightening) ＋ Treatment ＋ <em>α</em></span>
           <span class="acc-tagline">髪が変わり、自信が生まれ、ずっと触れていたくなる</span>
           <span class="acc-tagline-en">Your hair transforms, confidence follows, you can't stop touching it</span>
         </div>
@@ -1159,10 +1518,10 @@ body.en .res-small{display:none}
           <p class="acc-for-en">For those worn out by frizz and flyaways every morning, and who want beautiful, polished hair that simply behaves.</p>
           <p class="acc-desc">ポイントはもちろん、部分的にも全体的にも行うことが可能です。ダメージをできるだけ抑えたスタイル提案と、しっかりとしたケアで、毎朝の悩みから解放します。<br><br>クセや広がりを抑え、まとまりのある美しい髪を手に入れると、毎朝の準備が驚くほどスムーズに。凛とした清潔感が生まれ、ナチュラルに上質で品のある印象を引き立てます。手触りはさらりと滑らか、髪にも心にも負担をかけずに、理想のやわらかい自然なストレートヘアをお楽しみください。</p>
           <p class="acc-desc-en">We can treat specific sections or your entire hair. Minimizing damage while maximizing care, this course frees you from the daily struggle.<br><br>Tame frizz and flyaways, achieve beautiful, polished hair — and your mornings will change dramatically. A clean, refined, naturally smooth result. Silky to the touch, gentle on both your hair and your heart.</p>
-          <span class="acc-includes-label">Contents · 内容</span>
+          <span class="acc-includes-label">Includes · 含まれるもの</span>
           <div class="acc-includes">
             <div class="acc-inc-item">独自カルテ・カウンセリング</div>
-            <div class="acc-inc-item">ご相談 / カット / シャンプー</div>
+            <div class="acc-inc-item">ご相談 / 骨格デザインカット / シャンプー</div>
             <div class="acc-inc-item">ダメージホール補修処理剤</div>
             <div class="acc-inc-item">質感調整剤配合</div>
             <div class="acc-inc-item">パーソナルモイストトリートメント</div>
@@ -1193,8 +1552,9 @@ body.en .res-small{display:none}
     <div class="acc-item" id="acc7">
       <button class="acc-trigger" onclick="toggleAcc('acc7')">
         <div class="acc-left">
-          <span class="acc-cat">メンズカットコース · Men's Cut Course</span>
           <span class="acc-name">Men's cut course</span>
+          <span class="acc-compose ja-only"><span class="acc-compose-cat">メンズカットコース</span>骨格カット ＋ スカルプマッサージ ＋ <em>α</em></span>
+          <span class="acc-compose en-only"><span class="acc-compose-cat">Men's Cut Course</span>Cut ＋ Scalp Massage ＋ <em>α</em></span>
           <span class="acc-tagline">月1回の解放。ゆっくりケアを、ここで</span>
           <span class="acc-tagline-en">Your monthly reset — slow down and be taken care of</span>
         </div>
@@ -1210,7 +1570,7 @@ body.en .res-small{display:none}
           <p class="acc-for-en">For those who want a moment in a busy life — slow, intentional time that's just for them.</p>
           <p class="acc-desc">スカルプマッサージと頭皮ケアを取り入れた、心身ともにリフレッシュできるメンズ専用コースです。忙しい日々の中でのひとときを、ゆっくり過ごしていただけたら。</p>
           <p class="acc-desc-en">A men's-specific course featuring scalp massage and scalp care — designed to refresh both body and mind. A moment of stillness in a busy life, just for you.</p>
-          <span class="acc-includes-label">Contents · 内容</span>
+          <span class="acc-includes-label">Includes · 含まれるもの</span>
           <div class="acc-includes">
             <div class="acc-inc-item">独自カルテ・カウンセリング</div>
             <div class="acc-inc-item">ご相談 / カット / シャンプー</div>
@@ -1237,6 +1597,13 @@ body.en .res-small{display:none}
         </div>
       </div>
     </div>
+
+    <!-- TAKA'S VOICE -->
+    <div class="taka-voice">
+      <p class="taka-voice-quote ja-only">あなたの『なんか違う』を、ここで終わらせます。</p>
+      <p class="taka-voice-quote-en">Let this be where "something's not right" finally ends.</p>
+      <p class="taka-voice-sign">— TAKA</p>
+    </div>
   </section>
 
   <!-- NAME ORIGIN LINK -->
@@ -1248,15 +1615,18 @@ body.en .res-small{display:none}
     <a href="https://takahair-bridge.github.io/bridge-names/" target="_blank" class="name-origin-link en-only">Read the stories behind the names →</a>
   </div>
 
-  <!-- EARLY BOOKING -->
-  <div class="early-band">
-    <div class="early-title">Early Reservation</div>
-    <p class="early-text">「そろそろかな」と感じた瞬間が、最良のタイミングです。<br>bridgeの席はあなたのためにある——いつでも、あなたのペースで確保します。</p>
-    <p class="early-text-en">The moment you feel "it might be time" — that is the right time.<br>Your place at bridge is always waiting. Reserve it at your own pace.</p>
-  </div>
-
   <!-- ── SINGLE PRICE FOLD ── -->
   <div id="price" class="fold-wrap">
+    <!-- INDIVIDUAL SERVICES INTRO -->
+    <div class="individual-intro">
+      <span class="individual-intro-eyebrow">For Returning Guests</span>
+      <span class="individual-intro-title ja-only">単品メニュー料金</span>
+      <span class="individual-intro-title en-only" style="font-family:'Cormorant Garamond',serif;letter-spacing:.14em;">Pricing for Individual Services</span>
+      <p class="individual-intro-text ja-only">コースをご利用いただいたお客様の髪は、<br>回を重ねるごとに整い、必要なケアも変わっていきます。<br><br>「今回はこの部分だけ」「次回までの軽いお手入れ」<br>そんな時のための、透明な料金表です。</p>
+      <p class="individual-intro-text-en">As your hair improves with each course visit,<br>the care it needs naturally changes.<br><br>"Just this part today," "A light touch-up until next time" —<br>this menu exists for those moments, with complete transparency.</p>
+      <p class="individual-intro-note ja-only">※ コースのご利用も、もちろんいつでも承ります。</p>
+      <p class="individual-intro-note-en">※ Full courses remain available, of course, at any time.</p>
+    </div>
     <button class="fold-trigger" onclick="toggleFold()">
       <div>
         <span class="fold-trigger-left ja-only">単品メニュー · Price List</span>
@@ -1583,6 +1953,18 @@ body.en .res-small{display:none}
       <span class="inbound-btn-label">@takahair_bridge</span>
     </a>
   </div>
+</div>
+
+<!-- FOR OUR GUESTS IN JAPAN LABEL -->
+<div class="guests-jp-label">
+  <span class="guests-jp-label-text">For Our Guests in Japan · 日本のお客様へ</span>
+</div>
+
+<!-- EARLY BOOKING -->
+<div class="early-band">
+  <div class="early-title">Early Reservation</div>
+  <p class="early-text">「そろそろかな」と感じた瞬間が、最良のタイミングです。<br>bridgeの席はあなたのためにある——いつでも、あなたのペースで確保します。</p>
+  <p class="early-text-en">The moment you feel "it might be time" — that is the right time.<br>Your place at bridge is always waiting. Reserve it at your own pace.</p>
 </div>
 
 <!-- RESERVATION -->
